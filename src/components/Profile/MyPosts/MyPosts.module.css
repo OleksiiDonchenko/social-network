@@ -1,0 +1,14 @@
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 200px;
+}
+
+.buttons button {
+    padding: 10px;
+}
+
+.posts {
+    margin: 10px;
+}
