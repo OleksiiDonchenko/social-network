@@ -1,14 +1,16 @@
-.buttons {
+.textareaBtnBlock {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 200px;
 }
 
-.buttons button {
+.btn {
+    margin: 10px;
     padding: 10px;
 }
 
 .posts {
     margin: 10px;
+}
+
+.post {
+    margin: 5px;
 }
