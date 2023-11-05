@@ -36,14 +36,18 @@ const UsersContainer = () => {
             });
     };
 
+    const followUser = (id) => dispatch(follow(id));
+
+    const unfollowUser = (id) => dispatch(unfollow(id));
+
     return (
         <Users
             users={users}
             pageSize={pageSize}
             currentPage={currentPage}
             onPageChanged={onPageChanged}
-            follow={follow}
-            unfollow={unfollow}
+            follow={followUser}
+            unfollow={unfollowUser}
             isFetching={isFetching}
         />
     );

@@ -1,12 +1,11 @@
 import React from 'react';
 import style from './Users.module.css'
-import { useDispatch } from 'react-redux';
 import userPhoto from '../../assets/images/user-icon.png'
+import Preloader from '../common/Preloader'
+import { NavLink } from 'react-router-dom';
 
 const Users = (props) => {
-    const dispatch = useDispatch();
-
-    const pagesCount = Math.ceil(props.users.length / props.pageSize);
+    // const pagesCount = Math.ceil(props.users.length / props.pageSize);
     let pages = [];
     for (let i = 1; i <= 20; i++) {
         pages = [...pages, i];
@@ -28,36 +27,39 @@ const Users = (props) => {
                     })}
                 </div>
             </div>
-            <div className={style.users}>
-                {props.users.map(u => {
-                    return (
-                        <div key={u.id} className={style.userContainer}>
-                            <div className={style.user}>
-                                <div className={style.userInfoFirstPart}>
-                                    <img src={u.photos.large ? u.photos.large : userPhoto}
-                                        alt="user-photo"
-                                        className={style.userPhoto} />
-                                    <div>
-                                        {u.followed
-                                            ?
-                                            <button className={style.btn} onClick={() => dispatch(props.unfollow(u.id))}>
-                                                Unfollow
-                                            </button>
-                                            :
-                                            <button className={style.btn} onClick={() => dispatch(props.follow(u.id))}>
-                                                Follow
-                                            </button>}
+            {props.isFetching ? <Preloader /> :
+                <div className={style.users}>
+                    {props.users.map(u => {
+                        return (
+                            <div key={u.id} className={style.userContainer}>
+                                <div className={style.user}>
+                                    <div className={style.userInfoFirstPart}>
+                                        <NavLink to={'/profile/' + u.id}>
+                                            <img src={u.photos.large ? u.photos.large : userPhoto}
+                                                alt="user-photo"
+                                                className={style.userPhoto} />
+                                        </NavLink>
+                                        <div className={style.btnContainer}>
+                                            {u.followed
+                                                ?
+                                                <button className={style.btn} onClick={() => props.unfollow(u.id)}>
+                                                    Unfollow
+                                                </button>
+                                                :
+                                                <button className={style.btn} onClick={() => props.follow(u.id)}>
+                                                    Follow
+                                                </button>}
+                                        </div>
+                                    </div>
+                                    <div className={style.userInfoSecondPart}>
+                                        <p>{u.name}</p>
+                                        <p>{u.status ? u.status : 'User status: null'}</p>
                                     </div>
                                 </div>
-                                <div className={style.userInfoSecondPart}>
-                                    <p>{u.name}</p>
-                                    <p>{u.status ? u.status : 'User status: null'}</p>
-                                </div>
                             </div>
-                        </div>
-                    )
-                })}
-            </div>
+                        )
+                    })}
+                </div>}
         </div>
     );
 };
