@@ -9,6 +9,7 @@ const initialState = {
         { id: 5, message: "Every day, it's your chance!", likes: 38, },
     ],
     newPostText: 'New post text...',
+    profile: null,
 };
 
 export const profileSlice = createSlice({
@@ -33,3 +34,5 @@ export const profileSlice = createSlice({
 export const { addPost, updateNewPostText } = profileSlice.actions;
 export const selectPosts = state => state.profile.posts;
 export const selectNewPostText = state => state.profile.newPostText;
+
+export default profileSlice.reducer;

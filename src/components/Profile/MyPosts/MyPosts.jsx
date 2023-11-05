@@ -1,21 +1,7 @@
 import React from 'react';
 import style from './MyPosts.module.css'
-import { useDispatch, useSelector } from 'react-redux';
-import { addPost, selectNewPostText, selectPosts, updateNewPostText } from '../../../redux/profileSlice';
 
-const MyPosts = () => {
-    const dispatch = useDispatch();
-    const newPostText = useSelector(selectNewPostText);
-    const posts = useSelector(selectPosts);
-
-    const handleAddPost = () => {
-        dispatch(addPost());
-    }
-
-    const handlePostTextChange = (e) => {
-        dispatch(updateNewPostText(e.target.value));
-    }
-
+const MyPosts = ({ newPostText, posts, handlePostTextChange, handleAddPost }) => {
     return (
         <div>
             <h3>My posts</h3>
