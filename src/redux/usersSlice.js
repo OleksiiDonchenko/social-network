@@ -9,7 +9,7 @@ const initialState = {
 };
 
 export const usersSlice = createSlice({
-    name: 'users',
+    name: 'usersPage',
     initialState,
     reducers: {
         follow: (state, action) => {
@@ -34,10 +34,10 @@ export const usersSlice = createSlice({
 });
 
 export const { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching } = usersSlice.actions;
-export const selectUsers = state => state.users.users;
-export const selectPageSize = state => state.users.pageSize;
-export const selectTotalUsersCount = state => state.users.totalUsersCount;
-export const selectCurrentPage = state => state.users.currentPage;
-export const selectIsFetching = state => state.users.isFetching;
+export const selectUsers = state => state.usersPage.users;
+export const selectPageSize = state => state.usersPage.pageSize;
+export const selectTotalUsersCount = state => state.usersPage.totalUsersCount;
+export const selectCurrentPage = state => state.usersPage.currentPage;
+export const selectIsFetching = state => state.usersPage.isFetching;
 
 export default usersSlice.reducer;

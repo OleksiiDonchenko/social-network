@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addPost, selectNewPostText, selectPosts, updateNewPostText } from '../../../redux/profileSlice';
 import MyPosts from './MyPosts';
 
-const MyPostsContainer = () => {
+const MyPostsContainer = (props) => {
     const dispatch = useDispatch();
     const newPostText = useSelector(selectNewPostText);
     const posts = useSelector(selectPosts);
@@ -16,7 +16,7 @@ const MyPostsContainer = () => {
         dispatch(updateNewPostText(e.target.value));
     }
 
-    return <MyPosts newPostText={newPostText} posts={posts} handleAddPost={handleAddPost}
+    return <MyPosts profile={props.profile} newPostText={newPostText} posts={posts} handleAddPost={handleAddPost}
         handlePostTextChange={handlePostTextChange} />
 };
 

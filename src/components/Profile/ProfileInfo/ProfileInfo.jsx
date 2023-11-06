@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
+import style from './ProfileInfo.module.css'
+import profilePhoto from '../../../assets/images/user-icon.png'
+import Preloader from '../../common/Preloader';
+import OpenUserProfilePhoto from './OpenUserProfilePhoto';
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+    const [photoActive, setPhotoActive] = useState(false);
+
+    if (!props.profile) {
+        return <Preloader />
+    }
+
     return (
-        <div>
-            <img src="https://images.unsplash.com/photo-1533282960533-51328aa49826?auto=format&fit=crop&q
-            =80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2lkZXxlbnwwfHwwfHx8MA%3D%3D"
-                alt="" />
-            <div>ava + description</div>
+        <div className={style.infoContainer}>
+            <div className={style.info}>
+                <h3>{props.profile.fullName}</h3>
+                <div className={style.photoUserProfileContainer}>
+                    <img className={style.photoUserProfile}
+                        src={props.profile.photos.large ? props.profile.photos.large : profilePhoto}
+                        alt="photo-user-profile" onClick={() => setPhotoActive(true)} />
+                    <OpenUserProfilePhoto active={photoActive} setActive={setPhotoActive}
+                        userProfilePhoto={props.profile.photos.large} />
+                </div>
+                <div className={style.description}>{props.profile.aboutMe}</div>
+            </div>
         </div>
     );
 };

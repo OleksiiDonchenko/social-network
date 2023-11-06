@@ -4,8 +4,8 @@ import usersReducer from "./usersSlice";
 
 const store = configureStore({
     reducer: {
-        profile: profileReducer,
-        users: usersReducer,
+        profilePage: profileReducer,
+        usersPage: usersReducer,
     }
 })
 

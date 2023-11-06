@@ -12,5 +12,34 @@
 }
 
 .post {
+    display: flex;
+    justify-content: space-between;
     margin: 5px;
+}
+
+.photoUserProfileContainer {
+    width: 100%;
+    height: 100%;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 40px;
+}
+
+.photoUserProfile {
+    width: 100%;
+    height: 100%;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 40px;
+}
+
+.postMessage {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+}
+
+.postLikes {
+    display: flex;
+    align-items: flex-end;
 }

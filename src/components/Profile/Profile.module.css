@@ -1,3 +1,8 @@
 .profile {
     padding: 10px;
 }
+
+.profileContainer {
+    display: flex;
+    justify-content: space-around;
+}

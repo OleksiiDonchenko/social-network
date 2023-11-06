@@ -13,7 +13,7 @@ const initialState = {
 };
 
 export const profileSlice = createSlice({
-    name: 'profile',
+    name: 'profilePage',
     initialState,
     reducers: {
         addPost: (state) => {
@@ -27,12 +27,16 @@ export const profileSlice = createSlice({
         },
         updateNewPostText: (state, action) => {
             state.newPostText = action.payload;
+        },
+        setUserProfile: (state, action) => {
+            state.profile = action.payload;
         }
     }
 })
 
-export const { addPost, updateNewPostText } = profileSlice.actions;
-export const selectPosts = state => state.profile.posts;
-export const selectNewPostText = state => state.profile.newPostText;
+export const { addPost, updateNewPostText, setUserProfile } = profileSlice.actions;
+export const selectPosts = state => state.profilePage.posts;
+export const selectNewPostText = state => state.profilePage.newPostText;
+export const selectUserProfile = state => state.profilePage.profile;
 
 export default profileSlice.reducer;
