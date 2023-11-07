@@ -17,12 +17,12 @@ function App() {
       <Nav />
       <div className='app-wrapper-content'>
         <Routes>
-          <Route path='/' element={<News />}></Route>
-          <Route path='/profile/:userId?' element={<ProfileContainer />}></Route>
-          <Route path='/dialogs' element={<Dialogs />}></Route>
-          <Route path='/music' element={<Music />}></Route>
-          <Route path='/settings' element={<Settings />}></Route>
-          <Route path='/users' element={<UsersContainer />}></Route>
+          <Route path='/' element={<News />} />
+          <Route path='/profile/:userId?' element={<ProfileContainer />} />
+          <Route path='/dialogs/*' element={<Dialogs />} />
+          <Route path='/music' element={<Music />} />
+          <Route path='/settings' element={<Settings />} />
+          <Route path='/users' element={<UsersContainer />} />
         </Routes>
       </div>
     </div>

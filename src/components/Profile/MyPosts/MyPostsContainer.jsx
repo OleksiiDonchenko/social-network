@@ -12,12 +12,13 @@ const MyPostsContainer = (props) => {
         dispatch(addPost());
     }
 
-    const handlePostTextChange = (e) => {
+    const handleUpdateNewPostText = (e) => {
         dispatch(updateNewPostText(e.target.value));
     }
 
-    return <MyPosts profile={props.profile} newPostText={newPostText} posts={posts} handleAddPost={handleAddPost}
-        handlePostTextChange={handlePostTextChange} />
+    return <MyPosts profile={props.profile} newPostText={newPostText}
+        posts={posts} handleAddPost={handleAddPost}
+        handleUpdateNewPostText={handleUpdateNewPostText} />
 };
 
 export default MyPostsContainer;

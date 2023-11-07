@@ -2,13 +2,13 @@ import React from 'react';
 import style from './MyPosts.module.css'
 import Preloader from '../../common/Preloader';
 
-const MyPosts = ({ newPostText, posts, handlePostTextChange, handleAddPost, profile }) => {
+const MyPosts = ({ newPostText, posts, handleUpdateNewPostText, handleAddPost, profile }) => {
     return (
         <div>
             <h3>My posts</h3>
             <div>
                 <div className={style.textareaBtnBlock}>
-                    <textarea value={newPostText} onChange={handlePostTextChange} />
+                    <textarea value={newPostText} onChange={handleUpdateNewPostText} />
                     <button className={style.btn} onClick={handleAddPost}>Add post</button>
                 </div>
             </div>
