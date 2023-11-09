@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
 	selectCurrentPage, selectIsFetching, selectPageSize, selectTotalUsersCount, selectUsers,
 	follow, unfollow, toggleIsFetching, setTotalUsersCount,
-	setUsers, setCurrentPage
+	setUsers, setCurrentPage, selectFollowingInProgress, toogleIsFollowingProgress
 } from '../../redux/usersSlice';
 import Users from './Users';
 import { usersAPI } from '../api/usersAPI';
@@ -15,6 +15,7 @@ const UsersContainer = () => {
 	const currentPage = useSelector(selectCurrentPage);
 	const totalUsersCount = useSelector(selectTotalUsersCount);
 	const isFetching = useSelector(selectIsFetching);
+	const followingInProgress = useSelector(selectFollowingInProgress);
 
 	useEffect(() => {
 		dispatch(toggleIsFetching(true));
@@ -40,6 +41,9 @@ const UsersContainer = () => {
 
 	const unfollowUser = (id) => dispatch(unfollow(id));
 
+	const toogleIsFollowingProgressFunction = (isFetching, id) =>
+		dispatch(toogleIsFollowingProgress({ isFetching, id }));
+
 	return (
 		<Users
 			users={users}
@@ -49,6 +53,8 @@ const UsersContainer = () => {
 			follow={followUser}
 			unfollow={unfollowUser}
 			isFetching={isFetching}
+			followingInProgress={followingInProgress}
+			toogleIsFollowingProgress={toogleIsFollowingProgressFunction}
 		/>
 	);
 };

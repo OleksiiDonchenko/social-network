@@ -11,16 +11,6 @@ export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        setUserDataId: (state, action) => {
-            state.id = action.payload;
-        },
-        setUserDataLogin: (state, action) => {
-            state.login = action.payload;
-        },
-        setUserDataEmail: (state, action) => {
-            state.email = action.payload;
-            state.isAuth = true;
-        },
         setUserData: (state, action) => {
             const { id, login, email } = action.payload;
             state.id = id;

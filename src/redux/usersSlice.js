@@ -5,7 +5,8 @@ const initialState = {
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false,
+    isFetching: true,
+    followingInProgress: [],
 };
 
 export const usersSlice = createSlice({
@@ -30,14 +31,22 @@ export const usersSlice = createSlice({
         toggleIsFetching: (state, action) => {
             state.isFetching = action.payload;
         },
+        toogleIsFollowingProgress: (state, action) => {
+            const { isFetching, id } = action.payload;
+            isFetching
+                ? state.followingInProgress.push(id)
+                : state.followingInProgress = state.followingInProgress.filter(userId => userId !== id);
+        }
     }
 });
 
-export const { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching } = usersSlice.actions;
+export const { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching,
+    toogleIsFollowingProgress } = usersSlice.actions;
 export const selectUsers = state => state.usersPage.users;
 export const selectPageSize = state => state.usersPage.pageSize;
 export const selectTotalUsersCount = state => state.usersPage.totalUsersCount;
 export const selectCurrentPage = state => state.usersPage.currentPage;
 export const selectIsFetching = state => state.usersPage.isFetching;
+export const selectFollowingInProgress = state => state.usersPage.followingInProgress;
 
 export default usersSlice.reducer;

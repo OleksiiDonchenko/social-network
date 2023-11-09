@@ -18,10 +18,7 @@ const HeaderContainer = () => {
           .then((data) => {
             if (data.resultCode === 0) {
               const { id, login, email } = data.data;
-              dispatch(setUserDataId(id));
-              dispatch(setUserDataLogin(login));
-              dispatch(setUserDataEmail(email));
-              // dispatch(setUserData(id, login, email));
+              dispatch(setUserData({ id, login, email }));
             }
           })
       } catch (error) {
