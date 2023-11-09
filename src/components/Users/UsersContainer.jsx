@@ -5,8 +5,8 @@ import {
 	follow, unfollow, toggleIsFetching, setTotalUsersCount,
 	setUsers, setCurrentPage
 } from '../../redux/usersSlice';
-import axios from 'axios';
 import Users from './Users';
+import { usersAPI } from '../api/usersAPI';
 
 const UsersContainer = () => {
 	const dispatch = useDispatch();
@@ -18,23 +18,21 @@ const UsersContainer = () => {
 
 	useEffect(() => {
 		dispatch(toggleIsFetching(true));
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`,
-			{ withCredentials: true })
-			.then((response) => {
+		usersAPI.getUsers(currentPage, pageSize)
+			.then((data) => {
 				dispatch(toggleIsFetching(false));
-				dispatch(setUsers(response.data.items));
-				dispatch(setTotalUsersCount(response.data.totalCount));
+				dispatch(setUsers(data.items));
+				dispatch(setTotalUsersCount(data.totalCount));
 			});
 	}, [dispatch, pageSize, currentPage]);
 
 	const onPageChanged = (pageNumber) => {
 		dispatch(setCurrentPage(pageNumber));
 		dispatch(toggleIsFetching(true));
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${pageSize}`,
-			{ withCredentials: true })
-			.then((response) => {
+		usersAPI.getUsers(pageNumber, pageSize)
+			.then((data) => {
 				dispatch(toggleIsFetching(false));
-				dispatch(setUsers(response.data.items));
+				dispatch(setUsers(data.items));
 			});
 	};
 

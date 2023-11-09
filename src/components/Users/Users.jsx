@@ -3,7 +3,7 @@ import style from './Users.module.css'
 import userPhoto from '../../assets/images/user-icon.png'
 import Preloader from '../common/Preloader'
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
+import { usersAPI } from '../api/usersAPI';
 
 const Users = (props) => {
   // const pagesCount = Math.ceil(props.users.length / props.pageSize);
@@ -46,10 +46,9 @@ const Users = (props) => {
                         <button className={style.btn}
                           onClick={() => {
 
-                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
-                              { withCredentials: true })
-                              .then((response) => {
-                                if (response.data.resultCode === 0) {
+                            usersAPI.unfollow(u.id)
+                              .then((data) => {
+                                if (data.resultCode === 0) {
                                   props.unfollow(u.id)
                                 }
                               });
@@ -60,10 +59,9 @@ const Users = (props) => {
                         <button className={style.btn}
                           onClick={() => {
 
-                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {},
-                              { withCredentials: true })
-                              .then((response) => {
-                                if (response.data.resultCode === 0) {
+                            usersAPI.follow(u.id)
+                              .then((data) => {
+                                if (data.resultCode === 0) {
                                   props.follow(u.id)
                                 }
                               });
