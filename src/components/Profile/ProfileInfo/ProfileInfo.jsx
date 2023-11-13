@@ -19,8 +19,10 @@ const ProfileInfo = (props) => {
                     <img className={style.photoUserProfile}
                         src={props.profile.photos.large ? props.profile.photos.large : profilePhoto}
                         alt="photo-user-profile" onClick={() => setPhotoActive(true)} />
-                    <OpenUserProfilePhoto active={photoActive} setActive={setPhotoActive}
-                        userProfilePhoto={props.profile.photos.large} />
+                    {props.profile.photos.large ?
+                        <OpenUserProfilePhoto active={photoActive} setActive={setPhotoActive}
+                            userProfilePhoto={props.profile.photos.large} /> : ''}
+
                 </div>
                 <div className={style.description}>{props.profile.aboutMe}</div>
             </div>

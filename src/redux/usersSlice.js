@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { usersAPI } from "../components/api/usersAPI";
 
 const initialState = {
     users: [],
@@ -8,6 +9,32 @@ const initialState = {
     isFetching: true,
     followingInProgress: [],
 };
+
+export const getUsers = createAsyncThunk('usersPage/getUsers', async ({ currentPage, pageSize }, { dispatch }) => {
+    const data = await usersAPI.getUsers(currentPage, pageSize);
+    dispatch(usersSlice.actions.toggleIsFetching(true));
+    dispatch(usersSlice.actions.toggleIsFetching(false));
+    dispatch(usersSlice.actions.setUsers(data.items));
+    dispatch(usersSlice.actions.setTotalUsersCount(data.totalCount));
+})
+
+export const unfollowUser = createAsyncThunk('usersPage/unfollowUser', async (id, { dispatch }) => {
+    dispatch(usersSlice.actions.toogleIsFollowingProgress({ fetching: true, id: id }));
+    const data = await usersAPI.unfollow(id);
+    if (data.resultCode === 0) {
+        dispatch(usersSlice.actions.unfollow(id));
+    }
+    dispatch(usersSlice.actions.toogleIsFollowingProgress({ fetching: false, id: id }));
+})
+
+export const followUser = createAsyncThunk('usersPage/followUser', async (id, { dispatch }) => {
+    dispatch(usersSlice.actions.toogleIsFollowingProgress({ fetching: true, id: id }));
+    const data = await usersAPI.follow(id);
+    if (data.resultCode === 0) {
+        dispatch(usersSlice.actions.follow(id));
+    }
+    dispatch(usersSlice.actions.toogleIsFollowingProgress({ fetching: false, id: id }));
+})
 
 export const usersSlice = createSlice({
     name: 'usersPage',
@@ -32,10 +59,10 @@ export const usersSlice = createSlice({
             state.isFetching = action.payload;
         },
         toogleIsFollowingProgress: (state, action) => {
-            const { isFetching, id } = action.payload;
-            isFetching
-                ? state.followingInProgress.push(id)
-                : state.followingInProgress = state.followingInProgress.filter(userId => userId !== id);
+            const { fetching, id } = action.payload;
+            state.followingInProgress = fetching
+                ? [...state.followingInProgress, id]
+                : state.followingInProgress.filter(userId => userId !== id);
         }
     }
 });

@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAuthData, setUserData, setUserDataEmail, setUserDataId, setUserDataLogin }
+import { auth, selectAuthData }
   from '../../redux/authSlice';
 import Header from './Header';
-import { headerAPI } from '../api/headerAPI';
 
 const HeaderContainer = () => {
   const dispatch = useDispatch();
@@ -12,21 +11,7 @@ const HeaderContainer = () => {
   const login = data.login;
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        headerAPI.authMe()
-          .then((data) => {
-            if (data.resultCode === 0) {
-              const { id, login, email } = data.data;
-              dispatch(setUserData({ id, login, email }));
-            }
-          })
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-
-    }
-    fetchData();
+    dispatch(auth());
   }, [dispatch]);
 
   return (

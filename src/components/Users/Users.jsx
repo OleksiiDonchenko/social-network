@@ -3,7 +3,6 @@ import style from './Users.module.css'
 import userPhoto from '../../assets/images/user-icon.png'
 import Preloader from '../common/Preloader'
 import { NavLink } from 'react-router-dom';
-import { usersAPI } from '../api/usersAPI';
 
 const Users = (props) => {
   // const pagesCount = Math.ceil(props.users.length / props.pageSize);
@@ -45,34 +44,14 @@ const Users = (props) => {
                         ?
                         <button disabled={props.followingInProgress.some(id => id === u.id)}
                           className={style.btn}
-                          onClick={() => {
-
-                            props.toogleIsFollowingProgress(true, u.id)
-                            usersAPI.unfollow(u.id)
-                              .then((data) => {
-                                if (data.resultCode === 0) {
-                                  props.unfollow(u.id)
-                                }
-                                props.toogleIsFollowingProgress(false, u.id)
-                              });
-
-                          }}>Unfollow
+                          onClick={() => props.unfollow(u.id)}>
+                          Unfollow
                         </button>
                         :
                         <button disabled={props.followingInProgress.some(id => id === u.id)}
                           className={style.btn}
-                          onClick={() => {
-
-                            props.toogleIsFollowingProgress(true, u.id)
-                            usersAPI.follow(u.id)
-                              .then((data) => {
-                                if (data.resultCode === 0) {
-                                  props.follow(u.id)
-                                }
-                                props.toogleIsFollowingProgress(false, u.id)
-                              });
-
-                          }}>Follow
+                          onClick={() => props.follow(u.id)}>
+                          Follow
                         </button>}
                     </div>
                   </div>

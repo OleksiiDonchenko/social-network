@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './MyPosts.module.css'
 import Preloader from '../../common/Preloader';
+import profilePhoto from '../../../assets/images/user-icon.png'
 
 const MyPosts = ({ newPostText, posts, handleUpdateNewPostText, handleAddPost, profile }) => {
     return (
@@ -17,7 +18,7 @@ const MyPosts = ({ newPostText, posts, handleUpdateNewPostText, handleAddPost, p
                     <div className={style.photoUserProfileContainer}>
                         {profile === null ? < Preloader /> :
                             <img className={style.photoUserProfile}
-                                src={profile.photos.large}
+                                src={profile.photos.large ? profile.photos.large : profilePhoto}
                                 alt="photo-user-profile" />}
                     </div>
                     <div className={style.postMessage}>

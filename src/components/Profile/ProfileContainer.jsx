@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUserProfile, setUserProfile } from '../../redux/profileSlice';
+import { getUserProfile, selectUserProfile } from '../../redux/profileSlice';
 import { useParams } from 'react-router-dom';
 import Profile from './Profile';
-import { profileAPI } from '../api/profileAPI';
 
 const ProfileContainer = () => {
     const dispatch = useDispatch();
@@ -16,10 +15,7 @@ const ProfileContainer = () => {
             userId = 2;
         }
 
-        profileAPI.getUserProfile(userId)
-            .then((data) => {
-                dispatch(setUserProfile(data));
-            });
+        dispatch(getUserProfile(userId));
     }, [dispatch, params.userId]);
 
     return <Profile profile={userProfile} />

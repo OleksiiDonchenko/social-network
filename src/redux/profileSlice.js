@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { profileAPI } from "../components/api/profileAPI";
 
 const initialState = {
     posts: [
@@ -11,6 +12,11 @@ const initialState = {
     newPostText: 'New post text...',
     profile: null,
 };
+
+export const getUserProfile = createAsyncThunk('profilePage/userProfile', async (userId, { dispatch }) => {
+    const data = await profileAPI.getUserProfile(userId);
+    dispatch(profileSlice.actions.setUserProfile(data));
+})
 
 export const profileSlice = createSlice({
     name: 'profilePage',

@@ -2,11 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	selectCurrentPage, selectIsFetching, selectPageSize, selectTotalUsersCount, selectUsers,
-	follow, unfollow, toggleIsFetching, setTotalUsersCount,
-	setUsers, setCurrentPage, selectFollowingInProgress, toogleIsFollowingProgress
+	setCurrentPage, selectFollowingInProgress, toogleIsFollowingProgress, getUsers, followUser, unfollowUser
 } from '../../redux/usersSlice';
 import Users from './Users';
-import { usersAPI } from '../api/usersAPI';
 
 const UsersContainer = () => {
 	const dispatch = useDispatch();
@@ -18,28 +16,17 @@ const UsersContainer = () => {
 	const followingInProgress = useSelector(selectFollowingInProgress);
 
 	useEffect(() => {
-		dispatch(toggleIsFetching(true));
-		usersAPI.getUsers(currentPage, pageSize)
-			.then((data) => {
-				dispatch(toggleIsFetching(false));
-				dispatch(setUsers(data.items));
-				dispatch(setTotalUsersCount(data.totalCount));
-			});
+		dispatch(getUsers({ currentPage, pageSize }));
 	}, [dispatch, pageSize, currentPage]);
 
 	const onPageChanged = (pageNumber) => {
 		dispatch(setCurrentPage(pageNumber));
-		dispatch(toggleIsFetching(true));
-		usersAPI.getUsers(pageNumber, pageSize)
-			.then((data) => {
-				dispatch(toggleIsFetching(false));
-				dispatch(setUsers(data.items));
-			});
+		dispatch(getUsers({ pageNumber, pageSize }));
 	};
 
-	const followUser = (id) => dispatch(follow(id));
+	const follow = (id) => dispatch(followUser(id));
 
-	const unfollowUser = (id) => dispatch(unfollow(id));
+	const unfollow = (id) => dispatch(unfollowUser(id));
 
 	const toogleIsFollowingProgressFunction = (isFetching, id) =>
 		dispatch(toogleIsFollowingProgress({ isFetching, id }));
@@ -50,8 +37,8 @@ const UsersContainer = () => {
 			pageSize={pageSize}
 			currentPage={currentPage}
 			onPageChanged={onPageChanged}
-			follow={followUser}
-			unfollow={unfollowUser}
+			follow={follow}
+			unfollow={unfollow}
 			isFetching={isFetching}
 			followingInProgress={followingInProgress}
 			toogleIsFollowingProgress={toogleIsFollowingProgressFunction}
