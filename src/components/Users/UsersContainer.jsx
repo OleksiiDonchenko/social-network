@@ -7,6 +7,7 @@ import {
 import Users from './Users';
 import { useNavigate } from 'react-router-dom';
 import { selectAuthData } from '../../redux/authSlice';
+import withAuthRedirect from '../hoc/withAuthRedirect';
 
 const UsersContainer = () => {
 	const dispatch = useDispatch();
@@ -33,26 +34,19 @@ const UsersContainer = () => {
 	const toogleIsFollowingProgressFunction = (isFetching, id) =>
 		dispatch(toogleIsFollowingProgress({ isFetching, id }));
 
-	const navigate = useNavigate();
-	const isAuth = useSelector(selectAuthData).isAuth;
-	useEffect(() => {
-		if (!isAuth) {
-			return navigate('/login');
-		}
-	}, [navigate, isAuth]);
-
 	return (
-		<Users
-			users={users}
-			pageSize={pageSize}
-			currentPage={currentPage}
-			onPageChanged={onPageChanged}
-			follow={follow}
-			unfollow={unfollow}
-			isFetching={isFetching}
-			followingInProgress={followingInProgress}
-			toogleIsFollowingProgress={toogleIsFollowingProgressFunction}
-		/>
+		withAuthRedirect(
+			<Users
+				users={users}
+				pageSize={pageSize}
+				currentPage={currentPage}
+				onPageChanged={onPageChanged}
+				follow={follow}
+				unfollow={unfollow}
+				isFetching={isFetching}
+				followingInProgress={followingInProgress}
+				toogleIsFollowingProgress={toogleIsFollowingProgressFunction}
+			/>)
 	);
 };
 

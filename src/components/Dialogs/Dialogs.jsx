@@ -1,21 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import style from './Dialogs.module.css'
-import { useSelector } from 'react-redux';
-import { selectDialogs } from '../../redux/dialogsSlice';
-import { NavLink, Route, Routes, useNavigate } from 'react-router-dom';
+import { NavLink, Route, Routes } from 'react-router-dom';
 import ConversationsContainer from './Conversations/ConversationsContainers';
-import { selectAuthData } from '../../redux/authSlice';
 
-const Dialogs = () => {
-    const dialogs = useSelector(selectDialogs);
-
-    const navigate = useNavigate();
-    const isAuth = useSelector(selectAuthData).isAuth;
-    useEffect(() => {
-        if (!isAuth) {
-            return navigate('/login');
-        }
-    }, [navigate, isAuth]);
+const Dialogs = ({ dialogs }) => {
 
     return (
         <div className={style.dialogs}>

@@ -4,7 +4,7 @@ import ProfileContainer from './components/Profile/ProfileContainer'
 import HeaderContainer from './components/Header/HeaderContainer'
 import Nav from './components/Nav/Nav'
 import News from './components/News/News'
-import Dialogs from './components/Dialogs/Dialogs'
+import DialogsContainer from './components/Dialogs/DialogsContainer'
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings'
 import UsersContainer from './components/Users/UsersContainer'
@@ -20,7 +20,7 @@ function App() {
         <Routes>
           <Route path='/' element={<News />} />
           <Route path='/profile/:userId?' element={<ProfileContainer />} />
-          <Route path='/dialogs/*' element={<Dialogs />} />
+          <Route path='/dialogs/*' element={<DialogsContainer />} />
           <Route path='/music' element={<Music />} />
           <Route path='/settings' element={<Settings />} />
           <Route path='/users' element={<UsersContainer />} />
