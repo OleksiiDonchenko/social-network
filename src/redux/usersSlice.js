@@ -11,8 +11,8 @@ const initialState = {
 };
 
 export const getUsers = createAsyncThunk('usersPage/getUsers', async ({ currentPage, pageSize }, { dispatch }) => {
-    const data = await usersAPI.getUsers(currentPage, pageSize);
     dispatch(usersSlice.actions.toggleIsFetching(true));
+    const data = await usersAPI.getUsers(currentPage, pageSize);
     dispatch(usersSlice.actions.toggleIsFetching(false));
     dispatch(usersSlice.actions.setUsers(data.items));
     dispatch(usersSlice.actions.setTotalUsersCount(data.totalCount));

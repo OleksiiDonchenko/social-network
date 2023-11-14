@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserProfile, selectUserProfile } from '../../redux/profileSlice';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Profile from './Profile';
+import { selectAuthData } from '../../redux/authSlice';
 
 const ProfileContainer = () => {
     const dispatch = useDispatch();
@@ -17,6 +18,14 @@ const ProfileContainer = () => {
 
         dispatch(getUserProfile(userId));
     }, [dispatch, params.userId]);
+
+    const navigate = useNavigate();
+    const isAuth = useSelector(selectAuthData).isAuth;
+    useEffect(() => {
+        if (!isAuth) {
+            return navigate('/login');
+        }
+    }, [navigate, isAuth]);
 
     return <Profile profile={userProfile} />
 };
