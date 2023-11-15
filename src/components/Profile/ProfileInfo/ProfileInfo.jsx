@@ -3,6 +3,7 @@ import style from './ProfileInfo.module.css'
 import profilePhoto from '../../../assets/images/user-icon.png'
 import Preloader from '../../common/Preloader';
 import OpenUserProfilePhoto from './OpenUserProfilePhoto';
+import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
     const [photoActive, setPhotoActive] = useState(false);
@@ -24,7 +25,8 @@ const ProfileInfo = (props) => {
                             userProfilePhoto={props.profile.photos.large} /> : ''}
 
                 </div>
-                <div className={style.description}>{props.profile.aboutMe}</div>
+                {/* <div className={style.description}>{props.profile.aboutMe}</div> */}
+                <ProfileStatus status={'Hello my friends!!!'} />
             </div>
         </div>
     );

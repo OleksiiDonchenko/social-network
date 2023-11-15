@@ -21,9 +21,10 @@ const ProfileContainer = () => {
     }, [dispatch, params.userId]);
 
     return (
-        withAuthRedirect(
-            <Profile profile={userProfile} />
-        ))
+        // withAuthRedirect(
+        <Profile profile={userProfile} />
+        // )
+    )
 };
 
 export default ProfileContainer;
