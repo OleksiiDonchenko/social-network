@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserProfile, selectUserProfile } from '../../redux/profileSlice';
-import { useNavigate, useParams } from 'react-router-dom';
+import { getUserProfile, getUserStatus, selectUserProfile } from '../../redux/profileSlice';
+import { useParams } from 'react-router-dom';
 import Profile from './Profile';
-import { selectAuthData } from '../../redux/authSlice';
-import withAuthRedirect from '../hoc/withAuthRedirect';
+// import withAuthRedirect from '../hoc/withAuthRedirect';
 
 const ProfileContainer = () => {
     const dispatch = useDispatch();
@@ -14,15 +13,16 @@ const ProfileContainer = () => {
     useEffect(() => {
         let userId = params.userId;
         if (!userId) {
-            userId = 2;
+            userId = 1079;
         }
 
         dispatch(getUserProfile(userId));
+        dispatch(getUserStatus(userId));
     }, [dispatch, params.userId]);
 
     return (
         // withAuthRedirect(
-        <Profile profile={userProfile} />
+        <Profile profile={userProfile} status={status} />
         // )
     )
 };

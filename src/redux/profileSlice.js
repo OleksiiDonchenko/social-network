@@ -11,12 +11,28 @@ const initialState = {
     ],
     newPostText: 'New post text...',
     profile: null,
+    status: '',
 };
 
-export const getUserProfile = createAsyncThunk('profilePage/userProfile', async (userId, { dispatch }) => {
-    const data = await profileAPI.getUserProfile(userId);
-    dispatch(profileSlice.actions.setUserProfile(data));
-})
+export const getUserProfile = createAsyncThunk('profilePage/getUserProfile',
+    async (userId, { dispatch }) => {
+        const data = await profileAPI.getUserProfile(userId);
+        dispatch(profileSlice.actions.setUserProfile(data));
+    })
+
+export const getUserStatus = createAsyncThunk('profilePage/getUserStatus',
+    async (userId, { dispatch }) => {
+        const data = await profileAPI.getUserStatus(userId);
+        dispatch(profileSlice.actions.setUserStatus(data));
+    })
+
+export const updateUserStatus = createAsyncThunk('profilePage/updateUserStatus',
+    async (status, { dispatch }) => {
+        const data = await profileAPI.updateUserStatus(status);
+        if (data.resultCode === 0) {
+            dispatch(profileSlice.actions.setUserStatus(data));
+        }
+    })
 
 export const profileSlice = createSlice({
     name: 'profilePage',
@@ -36,13 +52,17 @@ export const profileSlice = createSlice({
         },
         setUserProfile: (state, action) => {
             state.profile = action.payload;
+        },
+        setUserStatus: (state, action) => {
+            state.status = action.payload;
         }
     }
 })
 
-export const { addPost, updateNewPostText, setUserProfile } = profileSlice.actions;
+export const { addPost, updateNewPostText, setUserProfile, setUserStatus } = profileSlice.actions;
 export const selectPosts = state => state.profilePage.posts;
 export const selectNewPostText = state => state.profilePage.newPostText;
 export const selectUserProfile = state => state.profilePage.profile;
+export const selectUserStatus = state => state.profilePage.status;
 
 export default profileSlice.reducer;

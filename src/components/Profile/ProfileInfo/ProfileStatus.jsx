@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUserStatus, setUserStatus, updateUserStatus } from '../../../redux/profileSlice';
 
 const ProfileStatus = (props) => {
+  const statusGlobalState = useSelector(selectUserStatus);
+
+  const dispatch = useDispatch();
   const [editMode, setEditMode] = useState(false);
-  const [status, setStatus] = useState(props.status);
+  const [status, setStatus] = useState(statusGlobalState);
 
   const changeStatus = (e) => {
-    setStatus(e.target.value)
+    setStatus(e.currentTarget.value);
   }
 
   const activateEditMode = () => {
@@ -14,18 +19,30 @@ const ProfileStatus = (props) => {
 
   const deactivateEditMode = () => {
     setEditMode(false);
+    dispatch(setUserStatus(status));
+    dispatch(updateUserStatus(status));
   }
+
+  useEffect(() => {
+    setStatus(statusGlobalState)
+  }, [statusGlobalState]);
 
   return (
     <div>
       {!editMode &&
-        <div onDoubleClick={activateEditMode}>
-          <span>{status}</span>
+        <div>
+          <span onDoubleClick={activateEditMode}>
+            {status || '-----'}
+          </span>
         </div>
       }
       {editMode &&
-        <div onBlur={deactivateEditMode}>
-          <input autoFocus={true} onChange={changeStatus} type="text" value={status} />
+        <div>
+          <input autoFocus={true}
+            onBlur={deactivateEditMode}
+            onChange={changeStatus}
+            type="text"
+            value={status || ''} />
         </div>
       }
     </div>
