@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserProfile, getUserStatus, selectUserProfile } from '../../redux/profileSlice';
 import { useParams } from 'react-router-dom';
 import Profile from './Profile';
-// import withAuthRedirect from '../hoc/withAuthRedirect';
+import withoutAuthRedirect from '../hoc/withoutAuthRedirect';
 
 const ProfileContainer = () => {
     const dispatch = useDispatch();
@@ -21,9 +21,9 @@ const ProfileContainer = () => {
     }, [dispatch, params.userId]);
 
     return (
-        // withAuthRedirect(
-        <Profile profile={userProfile} status={status} />
-        // )
+        withoutAuthRedirect(
+            <Profile profile={userProfile} />
+        )
     )
 };
 

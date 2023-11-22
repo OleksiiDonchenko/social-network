@@ -5,9 +5,7 @@ import {
 	setCurrentPage, selectFollowingInProgress, toogleIsFollowingProgress, getUsers, followUser, unfollowUser
 } from '../../redux/usersSlice';
 import Users from './Users';
-import { useNavigate } from 'react-router-dom';
-import { selectAuthData } from '../../redux/authSlice';
-import withAuthRedirect from '../hoc/withAuthRedirect';
+import withoutAuthRedirect from '../hoc/withoutAuthRedirect';
 
 const UsersContainer = () => {
 	const dispatch = useDispatch();
@@ -35,7 +33,7 @@ const UsersContainer = () => {
 		dispatch(toogleIsFollowingProgress({ isFetching, id }));
 
 	return (
-		withAuthRedirect(
+		withoutAuthRedirect(
 			<Users
 				users={users}
 				pageSize={pageSize}

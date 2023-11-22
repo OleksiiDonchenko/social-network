@@ -16,6 +16,11 @@
     max-height: 50px;
 }
 
+.loginBlock {
+    display: flex;
+    gap: 10px;
+}
+
 .loginBlock>a {
     font-size: 26px;
     color: white;
@@ -25,4 +30,8 @@
 .loginBlock>p {
     font-size: 26px;
     color: white;
+}
+
+.loginBlock button {
+    padding: 5px;
 }
