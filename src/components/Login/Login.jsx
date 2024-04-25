@@ -20,7 +20,7 @@ const LoginForm = () => {
       }}
     >
       {({ isSubmitting }) => (
-        <Form >
+        <Form>
           <div>
             <Field type='text' id='email' name='email' placeholder='Login' />
           </div>
@@ -32,7 +32,7 @@ const LoginForm = () => {
             <label htmlFor='rememberMe'>Remember me</label>
           </div>
           <div>
-            <button type='submit' typeof='submit' disabled={isSubmitting}>
+            <button className={style.btn} type='submit' typeof='submit' disabled={isSubmitting}>
               Log In
             </button>
           </div>
@@ -46,7 +46,7 @@ const Login = () => {
   return (
     <div className={style.loginContainer}>
       <h1>LOGIN</h1>
-      {<LoginForm />}
+      <LoginForm />
     </div>
   );
 };

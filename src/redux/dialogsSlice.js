@@ -86,34 +86,29 @@ const initialState = {
         }
     },
     nameTarget: '',
-    newMessageText: '',
 }
 
 export const dialogsSlice = createSlice({
     name: 'dialogsPage',
     initialState,
     reducers: {
-        addMessage: (state) => {
+        addMessage: (state, action) => {
             let conversation = `conversation${state.nameTarget}`;
             const lastIdEl = state.conversations[conversation].messagesUserProfile
             [state.conversations[conversation].messagesUserProfile.length - 1].id;
             const newMessage = {
                 id: lastIdEl + 1,
-                message: state.newMessageText
+                message: action.payload
             };
             state.conversations[conversation].messagesUserProfile.push(newMessage);
-            state.newMessageText = '';
         },
         updateNameTarget: (state, action) => {
             state.nameTarget = action.payload;
         },
-        updateNewMessageText: (state, action) => {
-            state.newMessageText = action.payload;
-        }
     }
 })
 
-export const { addMessage, updateNameTarget, updateNewMessageText } = dialogsSlice.actions;
+export const { addMessage, updateNameTarget } = dialogsSlice.actions;
 export const selectDialogs = state => state.dialogsPage.dialogs;
 export const selectConversations = state => state.dialogsPage.conversations;
 export const selectNameTarget = state => state.dialogsPage.nameTarget;

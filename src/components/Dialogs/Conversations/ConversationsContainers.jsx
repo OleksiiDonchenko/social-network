@@ -2,8 +2,7 @@ import React from 'react';
 import style from './Conversations.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    addMessage, selectConversations,
-    selectNewMessageText, updateNameTarget, updateNewMessageText
+    addMessage, selectConversations, selectNewMessageText, updateNameTarget
 } from '../../../redux/dialogsSlice';
 import Conversations from './Conversations';
 
@@ -15,13 +14,9 @@ const ConversationsContainer = (props) => {
     let conversation = `conversation${props.name}`;
     let messages = `messages${props.name}`;
 
-    const handleAddMessage = () => {
+    const handleAddMessage = (newMessageText) => {
         dispatch(updateNameTarget(props.name));
-        dispatch(addMessage());
-    }
-
-    const handleUpdateNewMessageText = (e) => {
-        dispatch(updateNewMessageText(e.target.value));
+        dispatch(addMessage(newMessageText));
     }
 
     const messagesInterlocutor = conversations[conversation][messages].map(m =>
@@ -43,8 +38,7 @@ const ConversationsContainer = (props) => {
         </div>)
 
     return <Conversations messagesInterlocutor={messagesInterlocutor} messagesUser={messagesUser}
-        newMessageText={newMessageText} handleUpdateNewMessageText={handleUpdateNewMessageText}
-        handleAddMessage={handleAddMessage} />
+        newMessageText={newMessageText} handleAddMessage={handleAddMessage} />
 }
 
 export default ConversationsContainer;

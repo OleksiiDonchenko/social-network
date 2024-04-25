@@ -14,3 +14,11 @@
     grid-area: main;
     background-color: cornflowerblue;
 }
+
+button {
+    cursor: pointer;
+}
+
+textarea {
+    resize: none;
+}
