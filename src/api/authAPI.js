@@ -1,4 +1,4 @@
-import instance from "./instanceAPI";
+import instance from "./instanceAPI"
 
 export const authAPI = {
   authMe() {

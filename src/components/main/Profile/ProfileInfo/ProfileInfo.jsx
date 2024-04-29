@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import style from './ProfileInfo.module.css'
-import profilePhoto from '../../../assets/images/user-icon.png'
-import Preloader from '../../common/Preloader';
+import profilePhoto from '../../../../assets/images/user-icon.png'
+import Preloader from '../../../common/Preloader';
 import OpenUserProfilePhoto from './OpenUserProfilePhoto';
 import ProfileStatus from './ProfileStatus';
 

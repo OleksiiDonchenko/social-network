@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addPost, selectPosts, } from '../../../redux/profileSlice';
+import { addPost, selectPosts, } from '../../../../redux/profileSlice';
 import MyPosts from './MyPosts';
 
 const MyPostsContainer = (props) => {

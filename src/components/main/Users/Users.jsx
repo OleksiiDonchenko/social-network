@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './Users.module.css';
-import userPhoto from '../../assets/images/user-icon.png';
-import Preloader from '../common/Preloader';
+import userPhoto from '../../../assets/images/user-icon.png';
+import Preloader from '../../common/Preloader';
 import { NavLink } from 'react-router-dom';
 
 const Users = (props) => {

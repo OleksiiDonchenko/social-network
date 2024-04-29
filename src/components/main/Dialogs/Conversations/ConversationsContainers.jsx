@@ -3,7 +3,7 @@ import style from './Conversations.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import {
     addMessage, selectConversations, selectNewMessageText, updateNameTarget
-} from '../../../redux/dialogsSlice';
+} from '../../../../redux/dialogsSlice';
 import Conversations from './Conversations';
 
 const ConversationsContainer = (props) => {

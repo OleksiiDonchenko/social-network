@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './MyPosts.module.css'
-import Preloader from '../../common/Preloader';
-import profilePhoto from '../../../assets/images/user-icon.png'
+import Preloader from '../../../common/Preloader';
+import profilePhoto from '../../../../assets/images/user-icon.png'
 import { Field, Form, Formik } from 'formik';
 
 const NewPostForm = ({ handleAddPost }) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './ProfileInfo.module.css'
-import profilePhoto from '../../../assets/images/user-icon.png'
+import profilePhoto from '../../../../assets/images/user-icon.png'
 
 const OpenUserProfilePhoto = ({ active, setActive, userProfilePhoto }) => {
     return (

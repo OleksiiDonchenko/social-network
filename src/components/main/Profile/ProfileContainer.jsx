@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserProfile, getUserStatus, selectUserProfile } from '../../redux/profileSlice';
+import { getUserProfile, getUserStatus, selectUserProfile } from '../../../redux/profileSlice';
 import { useParams } from 'react-router-dom';
 import Profile from './Profile';
-import withoutAuthRedirect from '../hoc/withoutAuthRedirect';
+import withoutAuthRedirect from '../../hoc/withoutAuthRedirect';
 
 const ProfileContainer = () => {
     const dispatch = useDispatch();

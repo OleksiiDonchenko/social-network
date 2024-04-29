@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUserStatus, setUserStatus, updateUserStatus } from '../../../redux/profileSlice';
+import { selectUserStatus, setUserStatus, updateUserStatus } from '../../../../redux/profileSlice';
 
 const ProfileStatus = (props) => {
   const statusGlobalState = useSelector(selectUserStatus);

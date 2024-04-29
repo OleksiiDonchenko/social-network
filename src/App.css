@@ -10,6 +10,16 @@
     margin: 0 auto;
 }
 
+.loggedOut .app-wrapper {
+    grid-template-areas:
+    'header header'
+    'main main';
+}
+
+.loggedOut aside {
+    display: none;
+}
+
 .app-wrapper-content {
     grid-area: main;
     background-color: cornflowerblue;

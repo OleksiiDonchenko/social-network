@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { profileAPI } from "../components/api/profileAPI";
+import { profileAPI } from "../api/profileAPI";
 
 const initialState = {
     posts: [

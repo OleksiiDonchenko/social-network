@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
 	selectCurrentPage, selectIsFetching, selectPageSize, selectTotalUsersCount, selectUsers,
 	setCurrentPage, selectFollowingInProgress, toogleIsFollowingProgress, getUsers, followUser, unfollowUser
-} from '../../redux/usersSlice';
+} from '../../../redux/usersSlice';
 import Users from './Users';
-import withoutAuthRedirect from '../hoc/withoutAuthRedirect';
+import withoutAuthRedirect from '../../hoc/withoutAuthRedirect';
 
 const UsersContainer = () => {
 	const dispatch = useDispatch();
