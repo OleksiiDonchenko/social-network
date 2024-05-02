@@ -1,5 +1,5 @@
 import React from 'react';
-import withAuthRedirect from '../hoc/withAuthRedirect';
+import withAuthRedirect from '../../hoc/withAuthRedirect';
 import Login from './Login';
 import { useSelector } from 'react-redux';
 import { selectAuthData } from '../../redux/authSlice';
